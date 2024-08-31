@@ -12,12 +12,12 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.4",
-    "@babel/register": "^7.24.6",
     "gulp": "^5.0.0",
-    "gulp-cached": "^1.1.1",
+    "gulp-changed": "^5.0.2",
     "gulp-clean": "^0.4.0",
-    "gulp-newer": "^1.4.0",
     "gulp-svgmin": "^4.1.0",
+    "gulp-ttf2woff": "^2.0.0",
+    "gulp-ttf2woff2": "^5.0.0",
     "sharp": "^0.33.5",
     "through2": "^4.0.2"
   }

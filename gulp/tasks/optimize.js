@@ -69,7 +69,7 @@ const optimizePng = () =>
     .pipe(dest('src/assets/images'));
 
 const optimizeJpg = () =>
-  src('raw/images/*.jpg')
+  src('raw/images/*.{jpg,jpeg}')
     .pipe(
       through2.obj(async function (file, enc, cb) {
         if (file.isBuffer()) {

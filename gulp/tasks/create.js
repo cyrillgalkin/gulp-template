@@ -27,7 +27,7 @@ const processImage = async (file, options) => {
 };
 
 function createWebp() {
-  return src('src/assets/images/*.{jpg,png}')
+  return src('src/assets/images/*.{jpg,jpeg,png}')
     .pipe(
       through2.obj(async function (file, enc, cb) {
         if (file.isBuffer()) {
@@ -52,18 +52,18 @@ function createWebp() {
 }
 
 function createAvif() {
-  src('src/assets/images/*.{jpg,png}')
+  return src('src/assets/images/*.{jpg,jpeg,png}')
     .pipe(
       through2.obj(async function (file, enc, cb) {
         if (file.isBuffer()) {
           try {
-            const images = await processImage(file, {
+            const processedFile = await processImage(file, {
               format: 'avif',
               sharpOptions: {
-                effort: 6,
+                // effort: 6,
               },
             });
-            if (images) images.forEach((img) => this.push(img));
+            if (processedFile) this.push(processedFile);
             cb();
           } catch (err) {
             cb(err);
