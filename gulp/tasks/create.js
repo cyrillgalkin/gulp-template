@@ -3,6 +3,8 @@ import through2 from 'through2';
 import sharp from 'sharp';
 import path from 'path';
 import fs from 'fs';
+import svgstore from 'gulp-svgstore';
+import rename from 'gulp-rename';
 
 // Общая функция для обработки изображений
 const processImage = async (file, options) => {
@@ -76,4 +78,15 @@ function createAvif() {
     .pipe(dest('src/assets/images'));
 }
 
-export { createWebp, createAvif };
+function createSprite() {
+  return src('src/assets/icons/*')
+    .pipe(
+      svgstore({
+        inlineSvg: true,
+      })
+    )
+    .pipe(rename('sprite.svg'))
+    .pipe(dest('build/assets/icons'));
+}
+
+export { createWebp, createAvif, createSprite };

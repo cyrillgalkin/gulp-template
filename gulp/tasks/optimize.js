@@ -3,8 +3,8 @@ import through2 from 'through2';
 import path from 'path';
 import sharp from 'sharp';
 import svgo from 'gulp-svgmin';
-import newer from 'gulp-newer';
 import fs from 'fs';
+import changed from 'gulp-changed';
 
 // Общая функция для обработки изображений
 const processImage = async (file, options) => {
@@ -97,7 +97,7 @@ const optimizeJpg = () =>
 
 const optimizeSvg = () =>
   src('raw/**/*.svg')
-    .pipe(newer('src/assets'))
+    .pipe(changed('src/assets'))
     .pipe(svgo())
     .pipe(dest('src/assets'));
 
