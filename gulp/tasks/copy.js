@@ -8,15 +8,32 @@ function copyFonts() {
 }
 
 function copyImages() {
-  return src('src/assets/images/*')
+  return src('src/assets/images/*', { encoding: false })
     .pipe(changed('build/assets/images'))
     .pipe(dest('build/assets/images'));
 }
 
-function copyAssets() {
-  return src(['src/assets/**/*', '!src/assets/icons/**'], {
-    base: 'src',
-  }).pipe(dest('build'));
+function copyFavicons() {
+  return src(
+    ['src/assets/favicons/*', '!src/assets/favicons/*.{zip,rar,txt}'],
+    {
+      encoding: false,
+    }
+  )
+    .pipe(changed('build'))
+    .pipe(dest('build'));
 }
 
-export { copyFonts, copyAssets, copyImages };
+function copyAssets() {
+  return src(
+    ['src/assets/**/*', '!src/assets/icons/**', '!src/assets/favicons/**'],
+    {
+      base: 'src',
+      encoding: false,
+    }
+  )
+    .pipe(changed('build'))
+    .pipe(dest('build'));
+}
+
+export { copyFonts, copyAssets, copyImages, copyFavicons };
