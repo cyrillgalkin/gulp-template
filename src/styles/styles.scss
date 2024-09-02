@@ -2,13 +2,13 @@
 @import '../../node_modules/normalize.css/normalize';
 
 /* GLOBAL */
-@import './common/variables.scss';
-@import './common/fonts.scss';
-@import './common/global.scss';
-@import './common/mixins.scss';
+@import './common/variables';
+@import './common/fonts';
+@import './common/global';
+@import './common/mixins';
 
 /* BLOCKS */
-@import './blocks/page.scss';
-@import './blocks/header.scss';
-@import './blocks/main.scss';
-@import './blocks/footer.scss';
+@import './blocks/page';
+@import './blocks/header';
+@import './blocks/main';
+@import './blocks/footer';
