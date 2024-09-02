@@ -21,3 +21,18 @@
 ```html
 <img src="assets/images/logo.svg" />
 ```
+
+#### IV Fonts
+
+Путь `src` для добавления шрифта.
+
+```scss
+@font-face {
+  font-family: 'Roboto';
+  src: url('../assets/fonts/Roboto-Regular.woff2') format('woff2'), url('../assets/fonts/Roboto-Regular.woff')
+      format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+```

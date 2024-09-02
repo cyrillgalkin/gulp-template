@@ -1,0 +1,10 @@
+.page {
+  height: 100%;
+}
+
+.page__body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-width: $vp-320;
+  min-height: 100%;
+}

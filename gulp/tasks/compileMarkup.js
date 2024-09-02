@@ -5,7 +5,7 @@ import plumber from 'gulp-plumber';
 import htmlhint from 'gulp-htmlhint';
 
 function compileMarkupInDev() {
-  return src('src/pages/*')
+  return src('src/pages/*', { base: 'src/pages' })
     .pipe(plumber())
     .pipe(htmlhint('.htmlhintrc'))
     .pipe(htmlhint.reporter())
@@ -14,7 +14,7 @@ function compileMarkupInDev() {
 }
 
 function compileMarkupInProd() {
-  return src('src/pages/*')
+  return src('src/pages/*', { base: 'src/pages' })
     .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
     .pipe(dest('build'));
 }

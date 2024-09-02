@@ -2,7 +2,7 @@ import { src, dest } from 'gulp';
 import changed from 'gulp-changed';
 
 function copyFonts() {
-  return src('src/assets/fonts/*.{woff,woff2}')
+  return src('src/assets/fonts/*.{woff,woff2}', { encoding: false })
     .pipe(changed('build/assets/fonts'))
     .pipe(dest('build/assets/fonts'));
 }

@@ -18,12 +18,15 @@ import {
   compileMarkupInDev,
   compileMarkupInProd,
 } from './gulp/tasks/compileMarkup.js';
+import {
+  compileStylesInDev,
+  compileStylesInProd,
+} from './gulp/tasks/compileStyles.js';
 
 function startWatching() {
   browserSync.init({
     server: {
       baseDir: './build',
-      // index: 'index.html',
     },
     browser: ['firefox'],
     notify: false,
@@ -47,6 +50,7 @@ function startWatching() {
 
   // SRC FOLDER
   watch('src/pages/**', compileMarkupInDev);
+  watch('src/styles/**', compileStylesInDev);
 }
 
 export const development = series(
@@ -58,6 +62,7 @@ export const development = series(
   copyAssets,
   copyFavicons,
   compileMarkupInDev,
+  compileStylesInDev,
   startWatching
 );
 
@@ -69,5 +74,6 @@ export const production = series(
   createSprite,
   copyAssets,
   copyFavicons,
-  compileMarkupInProd
+  compileMarkupInProd,
+  compileStylesInProd
 );
