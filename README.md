@@ -22,7 +22,7 @@
 
 ```html
 <svg width="32" height="32">
-  <use href="assets/icons/sprite.svg#sequence"></use>
+  <use href="assets/sprite/sprite.svg#sequence"></use>
 </svg>
 ```
 

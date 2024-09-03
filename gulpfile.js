@@ -14,6 +14,7 @@ import {
   copyFontsFromRaw,
   copyFontsFromSrc,
   copyImages,
+  copySprite,
 } from './gulp/tasks/copy.js';
 import browserSync from 'browser-sync';
 import {
@@ -45,7 +46,7 @@ function startWatching() {
   );
   watch('raw/fonts/*.{woff,woff2}', series(copyFontsFromRaw, copyFontsFromSrc));
   watch('raw/icons/*.svg', optimizeSvg);
-  watch('src/assets/icons/*.svg', createSprite);
+  watch('src/assets/icons/*.svg', series(createSprite, copySprite));
   watch('raw/images/*.svg', series(optimizeSvg, copyImages));
   watch(
     'raw/images/*.{jpg,jpeg}',
@@ -96,7 +97,6 @@ export const development = series(
 
 export const production = series(
   cleanBuild,
-  // createSprite,
   copyAssets,
   copyFaviconsFromSrc,
   compileMarkupInProd,

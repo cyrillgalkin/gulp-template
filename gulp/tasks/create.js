@@ -91,7 +91,7 @@ function createSprite() {
       })
     )
     .pipe(rename('sprite.svg'))
-    .pipe(dest('build/assets/icons'));
+    .pipe(dest('src/assets/sprite'));
 }
 
 export { createWebp, createAvif, createSprite };

@@ -7,6 +7,12 @@ function copyImages() {
     .pipe(dest('build/assets/images'));
 }
 
+function copySprite() {
+  return src('src/assets/sprite/sprite.svg', { encoding: false })
+    .pipe(changed('build/assets/sprite'))
+    .pipe(dest('build/assets/sprite'));
+}
+
 function copyFaviconsFromRaw() {
   return src(['raw/favicons/**/*', '!raw/favicons/*.{zip,rar,txt}'], {
     encoding: false,
@@ -46,6 +52,7 @@ function copyAssets() {
     {
       base: 'src',
       encoding: false,
+      allowEmpty: true,
     }
   )
     .pipe(changed('build'))
@@ -59,4 +66,5 @@ export {
   copyFaviconsFromSrc,
   copyFontsFromRaw,
   copyFontsFromSrc,
+  copySprite,
 };
