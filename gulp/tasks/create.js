@@ -88,7 +88,7 @@ function createSprite() {
     .pipe(
       through2.obj(function (file, enc, cb) {
         // Проверка на отсутствие файлов
-        if (!file || fs.readdirSync('src/assets/icons').length === 0) {
+        if (!fs.existsSync(file.path)) {
           return null;
         }
         cb(null, file); // Передаем файл дальше по потоку
