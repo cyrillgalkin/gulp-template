@@ -2,11 +2,15 @@ import { src, dest } from 'gulp';
 import through2 from 'through2';
 import sharp from 'sharp';
 import path from 'path';
-import fs, { existsSync, readdirSync } from 'fs';
+import fs from 'fs';
 import svgstore from 'gulp-svgstore';
 import rename from 'gulp-rename';
 
 function hasFiles(dir, extensions) {
+  // Проверяем, существует ли директория
+  if (!fs.existsSync(dir)) {
+    return false; // Если директории нет, возвращаем false
+  }
   return extensions.some((ext) =>
     fs.readdirSync(dir).some((file) => file.endsWith(`.${ext}`))
   );

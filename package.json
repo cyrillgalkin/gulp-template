@@ -12,8 +12,8 @@
   "license": "ISC",
   "description": "",
   "engines": {
-    "node": "^20.13.1",
-    "npm": "^10.8.1"
+    "node": ">=20.13.1",
+    "npm": ">=10.8.1"
   },
   "browserslist": [
     "last 3 versions"
