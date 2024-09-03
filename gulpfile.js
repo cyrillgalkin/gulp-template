@@ -7,7 +7,14 @@ import {
 } from './gulp/tasks/optimize.js';
 import { createAvif, createSprite, createWebp } from './gulp/tasks/create.js';
 import { convertToWoff, convertToWoff2 } from './gulp/tasks/convert.js';
-import { copyAssets, copyFavicons, copyImages } from './gulp/tasks/copy.js';
+import {
+  copyAssets,
+  copyFaviconsFromRaw,
+  copyFaviconsFromSrc,
+  copyFontsFromRaw,
+  copyFontsFromSrc,
+  copyImages,
+} from './gulp/tasks/copy.js';
 import browserSync from 'browser-sync';
 import {
   compileMarkupInDev,
@@ -28,7 +35,11 @@ function startWatching() {
   });
 
   // RAW FOLDER
-  watch('raw/fonts/*.ttf', series(parallel(convertToWoff, convertToWoff2)));
+  watch(
+    'raw/fonts/*.ttf',
+    series(parallel(convertToWoff, convertToWoff2), copyFontsFromSrc)
+  );
+  watch('raw/fonts/*.{woff,woff2}', series(copyFontsFromRaw, copyFontsFromSrc));
   watch('raw/icons/*.svg', series(optimizeSvg, createSprite));
   watch('raw/images/*.svg', series(optimizeSvg, copyImages));
   watch(
@@ -47,12 +58,14 @@ function startWatching() {
 
 export const development = series(
   cleanBuild,
+  copyFaviconsFromRaw,
+  copyFontsFromRaw,
   parallel(convertToWoff, convertToWoff2),
   parallel(optimizeSvg, optimizeJpg, optimizePng),
   parallel(createAvif, createWebp),
   createSprite,
   copyAssets,
-  copyFavicons,
+  copyFaviconsFromSrc,
   compileMarkupInDev,
   compileStylesInDev,
   startWatching
@@ -62,7 +75,7 @@ export const production = series(
   cleanBuild,
   createSprite,
   copyAssets,
-  copyFavicons,
+  copyFaviconsFromSrc,
   compileMarkupInProd,
   compileStylesInProd
 );

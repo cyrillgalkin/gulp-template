@@ -6,18 +6,16 @@ import * as dartSass from 'sass';
 import postсss from 'gulp-postcss';
 import cssnano from 'cssnano';
 import autoprefixer from 'autoprefixer';
-import sourcemaps from 'gulp-sourcemaps';
 import sortMediaQueries from 'postcss-sort-media-queries';
 
 const sassModule = gulpSass(dartSass);
 
 function compileStylesInDev() {
-  return src('src/styles/styles.scss', { base: 'src' })
-    .pipe(sourcemaps.init())
+  return src('src/styles/styles.scss', { base: 'src', sourcemaps: true })
     .pipe(plumber())
     .pipe(sassModule().on('error', sassModule.logError))
-    .pipe(sourcemaps.write())
-    .pipe(dest('build'))
+
+    .pipe(dest('build', { sourcemaps: true }))
     .pipe(browserSync.stream());
 }
 

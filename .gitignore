@@ -1,2 +1,9 @@
 node_modules
 build
+
+raw/favicons/**/*
+raw/fonts/**/*
+raw/icons/**/*
+raw/images/**/*
+
+!raw/**/README.md
