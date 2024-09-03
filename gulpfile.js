@@ -7,12 +7,7 @@ import {
 } from './gulp/tasks/optimize.js';
 import { createAvif, createSprite, createWebp } from './gulp/tasks/create.js';
 import { convertToWoff, convertToWoff2 } from './gulp/tasks/convert.js';
-import {
-  copyAssets,
-  copyFavicons,
-  copyFonts,
-  copyImages,
-} from './gulp/tasks/copy.js';
+import { copyAssets, copyFavicons, copyImages } from './gulp/tasks/copy.js';
 import browserSync from 'browser-sync';
 import {
   compileMarkupInDev,
@@ -33,10 +28,7 @@ function startWatching() {
   });
 
   // RAW FOLDER
-  watch(
-    'raw/fonts/*.{ttf,woff,woff2}',
-    series(parallel(convertToWoff, convertToWoff2), copyFonts)
-  );
+  watch('raw/fonts/*.ttf', series(parallel(convertToWoff, convertToWoff2)));
   watch('raw/icons/*.svg', series(optimizeSvg, createSprite));
   watch('raw/images/*.svg', series(optimizeSvg, copyImages));
   watch(
