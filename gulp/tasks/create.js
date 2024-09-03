@@ -9,6 +9,10 @@ import plumber from 'gulp-plumber';
 
 // Общая функция для обработки изображений
 const processImage = async (file, options) => {
+  // Проверка существования исходного файла
+  if (!fs.existsSync(file.path)) {
+    return null;
+  }
   const { format, sharpOptions } = options;
   const filePath = file.path;
   const fileBase = path.basename(filePath, path.extname(filePath));
@@ -31,7 +35,6 @@ const processImage = async (file, options) => {
 
 function createWebp() {
   return src('src/assets/images/*.{jpg,jpeg,png}')
-    .pipe(plumber())
     .pipe(
       through2.obj(async function (file, enc, cb) {
         if (file.isBuffer()) {
@@ -57,7 +60,6 @@ function createWebp() {
 
 function createAvif() {
   return src('src/assets/images/*.{jpg,jpeg,png}')
-    .pipe(plumber())
     .pipe(
       through2.obj(async function (file, enc, cb) {
         if (file.isBuffer()) {
@@ -83,7 +85,15 @@ function createAvif() {
 
 function createSprite() {
   return src('src/assets/icons/*')
-    .pipe(plumber())
+    .pipe(
+      through2.obj(function (file, enc, cb) {
+        // Проверка на отсутствие файлов
+        if (!file || fs.readdirSync('src/assets/icons').length === 0) {
+          return null;
+        }
+        cb(null, file); // Передаем файл дальше по потоку
+      })
+    )
     .pipe(
       svgstore({
         inlineSvg: true,
@@ -93,21 +103,4 @@ function createSprite() {
     .pipe(dest('build/assets/icons'));
 }
 
-function createSpriteIfImagesExist(cb) {
-  if (!existsSync('src/assets/icons')) {
-    console.log(
-      `There are no images in the 'src/assets/icons' directory. Skipping createSprite task.`
-    );
-    return cb(); // Skip the task if the directory doesn't exist
-  }
-  const files = readdirSync('src/assets/icons');
-  const imageFiles = files.filter((file) => /\.svg$/.test(file));
-
-  if (imageFiles.length > 0) {
-    return createSprite();
-  }
-
-  cb();
-}
-
-export { createWebp, createAvif, createSprite, createSpriteIfImagesExist };
+export { createWebp, createAvif, createSprite };

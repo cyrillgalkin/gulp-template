@@ -5,12 +5,7 @@ import {
   optimizePng,
   optimizeSvg,
 } from './gulp/tasks/optimize.js';
-import {
-  createAvif,
-  createSprite,
-  createSpriteIfImagesExist,
-  createWebp,
-} from './gulp/tasks/create.js';
+import { createAvif, createSprite, createWebp } from './gulp/tasks/create.js';
 import { convertToWoff, convertToWoff2 } from './gulp/tasks/convert.js';
 import {
   copyAssets,
@@ -67,6 +62,22 @@ function startWatching() {
   watch('src/scripts/**', compileScriptsInDev);
 }
 
+export const optimization = series(
+  cleanBuild,
+  copyFaviconsFromRaw,
+  copyFontsFromRaw,
+  parallel(convertToWoff, convertToWoff2),
+  parallel(optimizeSvg, optimizeJpg, optimizePng),
+  parallel(createAvif, createWebp),
+  createSprite,
+  copyAssets,
+  copyFaviconsFromSrc,
+  compileMarkupInDev,
+  compileStylesInDev,
+  compileScriptsInDev,
+  startWatching
+);
+
 export const development = series(
   cleanBuild,
   copyFaviconsFromRaw,
@@ -85,7 +96,7 @@ export const development = series(
 
 export const production = series(
   cleanBuild,
-  createSpriteIfImagesExist,
+  createSprite,
   copyAssets,
   copyFaviconsFromSrc,
   compileMarkupInProd,
