@@ -96,7 +96,7 @@ export const development = series(
 
 export const production = series(
   cleanBuild,
-  createSprite,
+  // createSprite,
   copyAssets,
   copyFaviconsFromSrc,
   compileMarkupInProd,
