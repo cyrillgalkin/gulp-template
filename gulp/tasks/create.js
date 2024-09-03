@@ -96,7 +96,7 @@ function createSprite() {
 function createSpriteIfImagesExist(cb) {
   if (!existsSync('src/assets/icons')) {
     console.log(
-      `Directory ${spriteImagesPath} does not exist. Skipping createSprite task.`
+      `There are no images in the 'src/assets/icons' directory. Skipping createSprite task.`
     );
     return cb(); // Skip the task if the directory doesn't exist
   }
