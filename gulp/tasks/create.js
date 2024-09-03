@@ -2,7 +2,7 @@ import { src, dest } from 'gulp';
 import through2 from 'through2';
 import sharp from 'sharp';
 import path from 'path';
-import fs from 'fs';
+import fs, { readdirSync } from 'fs';
 import svgstore from 'gulp-svgstore';
 import rename from 'gulp-rename';
 import plumber from 'gulp-plumber';
@@ -93,4 +93,15 @@ function createSprite() {
     .pipe(dest('build/assets/icons'));
 }
 
-export { createWebp, createAvif, createSprite };
+function createSpriteIfImagesExist(cb) {
+  const files = readdirSync('src/assets/icons');
+  const imageFiles = files.filter((file) => /\.svg$/.test(file));
+
+  if (imageFiles.length > 0) {
+    return createSprite();
+  }
+
+  cb();
+}
+
+export { createWebp, createAvif, createSprite, createSpriteIfImagesExist };

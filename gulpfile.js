@@ -5,7 +5,12 @@ import {
   optimizePng,
   optimizeSvg,
 } from './gulp/tasks/optimize.js';
-import { createAvif, createSprite, createWebp } from './gulp/tasks/create.js';
+import {
+  createAvif,
+  createSprite,
+  createSpriteIfImagesExist,
+  createWebp,
+} from './gulp/tasks/create.js';
 import { convertToWoff, convertToWoff2 } from './gulp/tasks/convert.js';
 import {
   copyAssets,
@@ -80,7 +85,7 @@ export const development = series(
 
 export const production = series(
   cleanBuild,
-  createSprite,
+  createSpriteIfImagesExist,
   copyAssets,
   copyFaviconsFromSrc,
   compileMarkupInProd,
