@@ -1,12 +1,6 @@
 import { src, dest } from 'gulp';
 import changed from 'gulp-changed';
 
-function copyFonts() {
-  return src('src/assets/fonts/*.{woff,woff2}', { encoding: false })
-    .pipe(changed('build/assets/fonts'))
-    .pipe(dest('build/assets/fonts'));
-}
-
 function copyImages() {
   return src('src/assets/images/*', { encoding: false })
     .pipe(changed('build/assets/images'))
@@ -36,4 +30,4 @@ function copyAssets() {
     .pipe(dest('build'));
 }
 
-export { copyFonts, copyAssets, copyImages, copyFavicons };
+export { copyAssets, copyImages, copyFavicons };

@@ -55,7 +55,7 @@ function startWatching() {
 
 export const development = series(
   cleanBuild,
-  parallel(copyFonts, convertToWoff, convertToWoff2),
+  parallel(convertToWoff, convertToWoff2),
   parallel(optimizeSvg, optimizeJpg, optimizePng),
   parallel(createAvif, createWebp),
   createSprite,
@@ -68,9 +68,6 @@ export const development = series(
 
 export const production = series(
   cleanBuild,
-  parallel(copyFonts, convertToWoff, convertToWoff2),
-  parallel(optimizeSvg, optimizeJpg, optimizePng),
-  parallel(createAvif, createWebp),
   createSprite,
   copyAssets,
   copyFavicons,
