@@ -2,7 +2,7 @@ import { src, dest } from 'gulp';
 import through2 from 'through2';
 import sharp from 'sharp';
 import path from 'path';
-import fs, { readdirSync } from 'fs';
+import fs, { existsSync, readdirSync } from 'fs';
 import svgstore from 'gulp-svgstore';
 import rename from 'gulp-rename';
 import plumber from 'gulp-plumber';
@@ -94,6 +94,12 @@ function createSprite() {
 }
 
 function createSpriteIfImagesExist(cb) {
+  if (!existsSync('src/assets/icons')) {
+    console.log(
+      `Directory ${spriteImagesPath} does not exist. Skipping createSprite task.`
+    );
+    return cb(); // Skip the task if the directory doesn't exist
+  }
   const files = readdirSync('src/assets/icons');
   const imageFiles = files.filter((file) => /\.svg$/.test(file));
 
