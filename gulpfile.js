@@ -40,7 +40,8 @@ function startWatching() {
     series(parallel(convertToWoff, convertToWoff2), copyFontsFromSrc)
   );
   watch('raw/fonts/*.{woff,woff2}', series(copyFontsFromRaw, copyFontsFromSrc));
-  watch('raw/icons/*.svg', series(optimizeSvg, createSprite));
+  watch('raw/icons/*.svg', optimizeSvg);
+  watch('src/assets/icons/*.svg', createSprite);
   watch('raw/images/*.svg', series(optimizeSvg, copyImages));
   watch(
     'raw/images/*.{jpg,jpeg}',
