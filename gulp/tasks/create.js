@@ -64,7 +64,7 @@ function createWebp(done) {
             cb(err);
           }
         } else {
-          cb();
+          cb(null, file);
         }
       })
     )
@@ -95,7 +95,7 @@ function createAvif(done) {
             cb(err);
           }
         } else {
-          cb();
+          cb(null, file);
         }
       })
     )
