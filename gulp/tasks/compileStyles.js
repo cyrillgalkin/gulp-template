@@ -7,7 +7,7 @@ import postсss from 'gulp-postcss';
 import cssnano from 'cssnano';
 import autoprefixer from 'autoprefixer';
 import sourcemaps from 'gulp-sourcemaps';
-import groupCssMediaQueries from 'gulp-group-css-media-queries';
+import sortMediaQueries from 'postcss-sort-media-queries';
 
 const sassModule = gulpSass(dartSass);
 
@@ -23,6 +23,9 @@ function compileStylesInDev() {
 
 function compileStylesInProd() {
   const plugins = [
+    sortMediaQueries({
+      sort: 'mobile-first', // default
+    }),
     autoprefixer(),
     cssnano({
       preset: [
@@ -34,7 +37,6 @@ function compileStylesInProd() {
 
   return src('src/styles/styles.scss', { base: 'src' })
     .pipe(sassModule())
-    .pipe(groupCssMediaQueries())
     .pipe(postсss(plugins))
     .pipe(dest('build'));
 }
