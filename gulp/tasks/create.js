@@ -34,7 +34,7 @@ const processImage = async (file, options) => {
 };
 
 function createWebp() {
-  return src('src/assets/images/*.{jpg,jpeg,png}')
+  return src('src/assets/images/*.{jpg,jpeg,png}', { allowEmpty: true })
     .pipe(
       through2.obj(async function (file, enc, cb) {
         if (file.isBuffer()) {
@@ -59,7 +59,7 @@ function createWebp() {
 }
 
 function createAvif() {
-  return src('src/assets/images/*.{jpg,jpeg,png}')
+  return src('src/assets/images/*.{jpg,jpeg,png}', { allowEmpty: true })
     .pipe(
       through2.obj(async function (file, enc, cb) {
         if (file.isBuffer()) {
@@ -84,16 +84,7 @@ function createAvif() {
 }
 
 function createSprite() {
-  return src('src/assets/icons/*')
-    .pipe(
-      through2.obj(function (file, enc, cb) {
-        // Проверка на отсутствие файлов
-        if (!fs.existsSync(file.path)) {
-          return null;
-        }
-        cb(null, file); // Передаем файл дальше по потоку
-      })
-    )
+  return src('src/assets/icons/*', { allowEmpty: true })
     .pipe(
       svgstore({
         inlineSvg: true,
