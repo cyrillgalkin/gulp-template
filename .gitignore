@@ -1,9 +1,16 @@
 node_modules
 build
 
-raw/favicons/**/*
-raw/fonts/**/*
-raw/icons/**/*
-raw/images/**/*
+raw/favicons/*
+!raw/favicons/.gitignore
+
+raw/fonts/*
+!raw/fonts/.gitignore
+
+raw/icons/*
+!raw/icons/.gitignore
+
+raw/images/*
+!raw/images/.gitignore
 
 !raw/**/README.md
