@@ -24,6 +24,10 @@ import {
   compileStylesInDev,
   compileStylesInProd,
 } from './gulp/tasks/compileStyles.js';
+import {
+  compileScriptsInDev,
+  compileScriptsInProd,
+} from './gulp/tasks/compileScripts.js';
 
 function startWatching() {
   browserSync.init({
@@ -55,6 +59,7 @@ function startWatching() {
   // SRC FOLDER
   watch('src/pages/**', compileMarkupInDev);
   watch('src/styles/**', compileStylesInDev);
+  watch('src/scripts/**', compileScriptsInDev);
 }
 
 export const development = series(
@@ -69,6 +74,7 @@ export const development = series(
   copyFaviconsFromSrc,
   compileMarkupInDev,
   compileStylesInDev,
+  compileScriptsInDev,
   startWatching
 );
 
@@ -78,5 +84,6 @@ export const production = series(
   copyAssets,
   copyFaviconsFromSrc,
   compileMarkupInProd,
-  compileStylesInProd
+  compileStylesInProd,
+  compileScriptsInProd
 );

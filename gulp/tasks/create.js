@@ -5,6 +5,7 @@ import path from 'path';
 import fs from 'fs';
 import svgstore from 'gulp-svgstore';
 import rename from 'gulp-rename';
+import plumber from 'gulp-plumber';
 
 // Общая функция для обработки изображений
 const processImage = async (file, options) => {
@@ -30,6 +31,7 @@ const processImage = async (file, options) => {
 
 function createWebp() {
   return src('src/assets/images/*.{jpg,jpeg,png}')
+    .pipe(plumber())
     .pipe(
       through2.obj(async function (file, enc, cb) {
         if (file.isBuffer()) {
@@ -55,6 +57,7 @@ function createWebp() {
 
 function createAvif() {
   return src('src/assets/images/*.{jpg,jpeg,png}')
+    .pipe(plumber())
     .pipe(
       through2.obj(async function (file, enc, cb) {
         if (file.isBuffer()) {
@@ -80,6 +83,7 @@ function createAvif() {
 
 function createSprite() {
   return src('src/assets/icons/*')
+    .pipe(plumber())
     .pipe(
       svgstore({
         inlineSvg: true,
