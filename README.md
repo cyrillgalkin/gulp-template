@@ -10,7 +10,7 @@
 
 ```html
 <svg width="32" height="32">
-  <use href="assets/icons/sprite.svg#grater"></use>
+  <use href="assets/icons/sprite.svg#sequence"></use>
 </svg>
 ```
 
@@ -19,7 +19,7 @@
 Путь `src` для добавления картинки в HTML разметку.
 
 ```html
-<img src="assets/images/logo.svg" />
+<img src="assets/images/star@2x.png" width="100px" height="auto" />
 ```
 
 #### IV Fonts
@@ -29,10 +29,11 @@
 ```scss
 @font-face {
   font-family: 'Roboto';
-  src: url('../assets/fonts/Roboto-Regular.woff2') format('woff2'), url('../assets/fonts/Roboto-Regular.woff')
-      format('woff');
-  font-weight: 400;
+  src:
+    url('../assets/fonts/Roboto-Regular.woff2') format('woff2'),
+    url('../assets/fonts/Roboto-Regular.woff') format('woff');
   font-style: normal;
+  font-weight: 400;
   font-display: swap;
 }
 ```
