@@ -14,7 +14,357 @@
   "attr-whitespace": true,
   "alt-require": true,
   "input-requires-label": true,
-  "tags-check": true,
+  "tags-check": {
+    "a": {
+      "selfclosing": false,
+      "attrsRequired": [
+        "href"
+      ],
+      "attrsOptional": [
+        "title",
+        "target",
+        "rel"
+      ]
+    },
+    "img": {
+      "selfclosing": true,
+      "attrsRequired": [
+        "src",
+        "alt"
+      ],
+      "attrsOptional": [
+        "width",
+        "height",
+        "srcset",
+        "sizes",
+        "loading"
+      ]
+    },
+    "picture": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": []
+    },
+    "source": {
+      "selfclosing": true,
+      "attrsRequired": [
+        "srcset"
+      ],
+      "attrsOptional": [
+        "type",
+        "media",
+        "sizes"
+      ]
+    },
+    "link": {
+      "selfclosing": true,
+      "attrsRequired": [
+        "rel",
+        "href"
+      ],
+      "attrsOptional": [
+        "type",
+        "media",
+        "sizes",
+        "crossorigin"
+      ]
+    },
+    "meta": {
+      "selfclosing": true
+    },
+    "script": {
+      "selfclosing": false,
+      "attrsRequired": [
+        "src"
+      ],
+      "attrsOptional": [
+        "async",
+        "defer",
+        "type",
+        "crossorigin"
+      ]
+    },
+    "input": {
+      "selfclosing": true,
+      "attrsRequired": [
+        "type",
+        "name"
+      ],
+      "attrsOptional": [
+        "value",
+        "placeholder",
+        "maxlength",
+        "required"
+      ]
+    },
+    "button": {
+      "selfclosing": false,
+      "attrsRequired": [
+        "type"
+      ],
+      "attrsOptional": [
+        "name",
+        "value",
+        "disabled"
+      ]
+    },
+    "form": {
+      "selfclosing": false,
+      "attrsRequired": [
+        "action",
+        "method"
+      ],
+      "attrsOptional": [
+        "enctype",
+        "autocomplete",
+        "novalidate",
+        "target"
+      ]
+    },
+    "textarea": {
+      "selfclosing": false,
+      "attrsRequired": [
+        "name"
+      ],
+      "attrsOptional": [
+        "placeholder",
+        "maxlength",
+        "rows",
+        "cols",
+        "required"
+      ]
+    },
+    "select": {
+      "selfclosing": false,
+      "attrsRequired": [
+        "name"
+      ],
+      "attrsOptional": [
+        "multiple",
+        "required",
+        "size"
+      ]
+    },
+    "option": {
+      "selfclosing": false,
+      "attrsRequired": [
+        "value"
+      ],
+      "attrsOptional": [
+        "disabled",
+        "selected",
+        "label"
+      ]
+    },
+    "table": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": [
+        "border",
+        "cellspacing",
+        "cellpadding",
+        "summary"
+      ]
+    },
+    "th": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": [
+        "colspan",
+        "rowspan",
+        "headers",
+        "scope",
+        "abbr"
+      ]
+    },
+    "td": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": [
+        "colspan",
+        "rowspan",
+        "headers"
+      ]
+    },
+    "tr": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": [
+        "align",
+        "valign"
+      ]
+    },
+    "thead": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": [
+        "align",
+        "valign"
+      ]
+    },
+    "tbody": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": [
+        "align",
+        "valign"
+      ]
+    },
+    "tfoot": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": [
+        "align",
+        "valign"
+      ]
+    },
+    "caption": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": [
+        "align"
+      ]
+    },
+    "figure": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": []
+    },
+    "figcaption": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": []
+    },
+    "video": {
+      "selfclosing": false,
+      "attrsRequired": [
+        "src"
+      ],
+      "attrsOptional": [
+        "controls",
+        "autoplay",
+        "loop",
+        "muted",
+        "poster",
+        "preload",
+        "width",
+        "height"
+      ]
+    },
+    "audio": {
+      "selfclosing": false,
+      "attrsRequired": [
+        "src"
+      ],
+      "attrsOptional": [
+        "controls",
+        "autoplay",
+        "loop",
+        "muted",
+        "preload"
+      ]
+    },
+    "iframe": {
+      "selfclosing": false,
+      "attrsRequired": [
+        "src"
+      ],
+      "attrsOptional": [
+        "width",
+        "height",
+        "frameborder",
+        "allowfullscreen",
+        "name",
+        "sandbox",
+        "loading"
+      ]
+    },
+    "canvas": {
+      "selfclosing": false,
+      "attrsRequired": [
+        "width",
+        "height"
+      ],
+      "attrsOptional": []
+    },
+    "details": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": [
+        "open"
+      ]
+    },
+    "summary": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": []
+    },
+    "nav": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": []
+    },
+    "header": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": []
+    },
+    "footer": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": []
+    },
+    "section": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": []
+    },
+    "article": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": []
+    },
+    "aside": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": []
+    },
+    "main": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": []
+    },
+    "h1": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": []
+    },
+    "h2": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": []
+    },
+    "h3": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": []
+    },
+    "h4": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": []
+    },
+    "h5": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": []
+    },
+    "h6": {
+      "selfclosing": false,
+      "attrsRequired": [],
+      "attrsOptional": []
+    }
+  },
   "tag-pair": true,
   "empty-tag-not-self-closed": false,
   "tagname-specialchars": true,

@@ -16,10 +16,24 @@
 
 #### III Image
 
-Путь `src` для добавления картинки в HTML разметку.
+Добавление тега `picture` в HTML разметку.
 
 ```html
-<img src="assets/images/star@2x.png" width="100px" height="auto" />
+<picture>
+  <source
+    srcset="assets/images/star@1x.avif 1x, assets/images/star@2x.avif 2x"
+    type="image/avif" />
+  <source
+    srcset="assets/images/star@1x.webp 1x, assets/images/star@2x.webp 2x"
+    type="image/webp" />
+  <img
+    class="products__image"
+    width="250"
+    height="auto"
+    src="assets/images/star@1x.png"
+    srcset="assets/images/star@2x.png 2x"
+    alt="На изображении изображена звезда, покрытая золотом." />
+</picture>
 ```
 
 #### IV Fonts
