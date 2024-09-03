@@ -5,14 +5,17 @@ import path from 'path';
 import fs, { existsSync, readdirSync } from 'fs';
 import svgstore from 'gulp-svgstore';
 import rename from 'gulp-rename';
-import plumber from 'gulp-plumber';
+
+function hasFiles(dir, extensions) {
+  return extensions.some((ext) =>
+    fs.readdirSync(dir).some((file) => file.endsWith(`.${ext}`))
+  );
+}
 
 // Общая функция для обработки изображений
 const processImage = async (file, options) => {
   // Проверка существования исходного файла
-  if (!fs.existsSync(file.path)) {
-    return null;
-  }
+
   const { format, sharpOptions } = options;
   const filePath = file.path;
   const fileBase = path.basename(filePath, path.extname(filePath));
@@ -33,7 +36,13 @@ const processImage = async (file, options) => {
   return processedFile;
 };
 
-function createWebp() {
+function createWebp(done) {
+  // Проверка наличия файлов перед началом обработки
+  if (!hasFiles('src/assets/images', ['jpg', 'jpeg', 'png'])) {
+    console.log('Нет подходящих файлов для обработки.');
+    done();
+  }
+
   return src('src/assets/images/*.{jpg,jpeg,png}', { allowEmpty: true })
     .pipe(
       through2.obj(async function (file, enc, cb) {
@@ -51,14 +60,20 @@ function createWebp() {
             cb(err);
           }
         } else {
-          cb(null, file);
+          cb();
         }
       })
     )
     .pipe(dest('src/assets/images'));
 }
 
-function createAvif() {
+function createAvif(done) {
+  // Проверка наличия файлов перед началом обработки
+  if (!hasFiles('src/assets/images', ['jpg', 'jpeg', 'png'])) {
+    console.log('Нет подходящих файлов для обработки.');
+    done();
+  }
+
   return src('src/assets/images/*.{jpg,jpeg,png}', { allowEmpty: true })
     .pipe(
       through2.obj(async function (file, enc, cb) {
@@ -76,22 +91,28 @@ function createAvif() {
             cb(err);
           }
         } else {
-          cb(null, file);
+          cb();
         }
       })
     )
     .pipe(dest('src/assets/images'));
 }
 
-function createSprite() {
-  return src('src/assets/icons/*', { allowEmpty: true })
+function createSprite(done) {
+  // Проверка наличия файлов перед началом обработки
+  if (!hasFiles('src/assets/icons', ['svg'])) {
+    console.log('Нет подходящих файлов для обработки.');
+    done();
+  }
+
+  return src('src/assets/icons/*')
     .pipe(
       svgstore({
         inlineSvg: true,
       })
     )
     .pipe(rename('sprite.svg'))
-    .pipe(dest('src/assets/sprite'));
+    .pipe(dest('build/assets/icons'));
 }
 
 export { createWebp, createAvif, createSprite };
