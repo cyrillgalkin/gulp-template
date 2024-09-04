@@ -3,18 +3,8 @@ import through2 from 'through2';
 import sharp from 'sharp';
 import path from 'path';
 import fs from 'fs';
-import svgstore from 'gulp-svgstore';
+import { stacksvg } from 'gulp-stacksvg';
 import rename from 'gulp-rename';
-
-function hasFiles(dir, extensions) {
-  // Проверяем, существует ли директория
-  if (!fs.existsSync(dir)) {
-    return false; // Если директории нет, возвращаем false
-  }
-  return extensions.some((ext) =>
-    fs.readdirSync(dir).some((file) => file.endsWith(`.${ext}`))
-  );
-}
 
 // Общая функция для обработки изображений
 const processImage = async (file, options) => {
@@ -40,14 +30,8 @@ const processImage = async (file, options) => {
   return processedFile;
 };
 
-function createWebp(done) {
-  // Проверка наличия файлов перед началом обработки
-  if (!hasFiles('src/assets/images', ['jpg', 'jpeg', 'png'])) {
-    console.log('Нет подходящих файлов для обработки.');
-    done();
-  }
-
-  return src('src/assets/images/*.{jpg,jpeg,png}', { allowEmpty: true })
+function createWebp() {
+  return src('src/assets/images/*.{jpg,jpeg,png}')
     .pipe(
       through2.obj(async function (file, enc, cb) {
         if (file.isBuffer()) {
@@ -71,14 +55,8 @@ function createWebp(done) {
     .pipe(dest('src/assets/images'));
 }
 
-function createAvif(done) {
-  // Проверка наличия файлов перед началом обработки
-  if (!hasFiles('src/assets/images', ['jpg', 'jpeg', 'png'])) {
-    console.log('Нет подходящих файлов для обработки.');
-    done();
-  }
-
-  return src('src/assets/images/*.{jpg,jpeg,png}', { allowEmpty: true })
+function createAvif() {
+  return src('src/assets/images/*.{jpg,jpeg,png}')
     .pipe(
       through2.obj(async function (file, enc, cb) {
         if (file.isBuffer()) {
@@ -102,19 +80,9 @@ function createAvif(done) {
     .pipe(dest('src/assets/images'));
 }
 
-function createSprite(done) {
-  // Проверка наличия файлов перед началом обработки
-  if (!hasFiles('src/assets/icons', ['svg'])) {
-    console.log('Нет подходящих файлов для обработки.');
-    done();
-  }
-
+function createSprite() {
   return src('src/assets/icons/*')
-    .pipe(
-      svgstore({
-        inlineSvg: true,
-      })
-    )
+    .pipe(stacksvg())
     .pipe(rename('sprite.svg'))
     .pipe(dest('build/assets/icons'));
 }

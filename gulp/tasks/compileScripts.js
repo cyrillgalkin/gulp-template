@@ -25,8 +25,7 @@ function compileScriptsInProd() {
         mode: 'production',
       })
     )
-    .pipe(dest('build/scripts'))
-    .pipe(browserSync.stream());
+    .pipe(dest('build/scripts'));
 }
 
 export { compileScriptsInDev, compileScriptsInProd };

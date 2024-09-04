@@ -22,7 +22,7 @@
 
 ```html
 <svg width="32" height="32">
-  <use href="assets/sprite/sprite.svg#sequence"></use>
+  <use href="assets/icons/sprite.svg#hat"></use>
 </svg>
 ```
 
@@ -48,7 +48,23 @@
 </picture>
 ```
 
-#### IV Fonts
+#### IV Background Image
+
+Добавление `background-image` в SCSS разметку.
+
+```scss
+.header__menu-button {
+  width: 60px;
+  height: 60px;
+  background-color: transparent;
+  background-image: url('../assets/icons/sprite.svg#menu-closed');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 32px;
+}
+```
+
+#### V Fonts
 
 Путь `src` для добавления шрифта.
 

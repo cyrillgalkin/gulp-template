@@ -2,10 +2,9 @@
   "name": "gulp-template",
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://cyrillgalkin.github.io/gulp-template/",
   "scripts": {
     "build": "gulp production",
-    "start": "gulp development"
+    "dev": "gulp development"
   },
   "keywords": [],
   "author": "",
@@ -21,9 +20,14 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.4",
+    "@eslint/js": "^9.9.1",
     "autoprefixer": "^10.4.20",
     "browser-sync": "^3.0.2",
     "cssnano": "^7.0.5",
+    "eslint": "^9.9.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.9.0",
     "gulp": "^5.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-changed": "^5.0.2",
@@ -34,8 +38,8 @@
     "gulp-postcss": "^10.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
+    "gulp-stacksvg": "^4.0.0",
     "gulp-svgmin": "^4.1.0",
-    "gulp-svgstore": "^9.0.0",
     "gulp-ttf2woff": "^2.0.0",
     "gulp-ttf2woff2": "^5.0.0",
     "normalize.css": "^8.0.1",

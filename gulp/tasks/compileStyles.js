@@ -14,7 +14,6 @@ function compileStylesInDev() {
   return src('src/styles/styles.scss', { base: 'src', sourcemaps: true })
     .pipe(plumber())
     .pipe(sassModule().on('error', sassModule.logError))
-
     .pipe(dest('build', { sourcemaps: true }))
     .pipe(browserSync.stream());
 }
